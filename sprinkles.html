@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sprinkles – Artisan Cakes & Pastries</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --cream: #faf6f1;
+    --blush: #f2d9cc;
+    --rose:  #c9806a;
+    --deep:  #2b1a12;
+    --mid:   #7a4f3a;
+    --soft:  #e8c9b8;
+    --white: #ffffff;
+    --accent:#d4a98a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(250,246,241,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--blush);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--deep); text-decoration: none;
+  }
+  .nav-logo span { color: var(--rose); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mid); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+
+  .nav-cart {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--deep); color: var(--cream);
+    border: none; padding: 0.6rem 1.4rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.8rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s; border-radius: 2px;
+  }
+  .nav-cart:hover { background: var(--rose); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    padding: 7rem 4rem 4rem;
+    gap: 4rem;
+    background: linear-gradient(135deg, var(--cream) 55%, var(--blush) 100%);
+    position: relative; overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; right: -80px;
+    width: 380px; height: 380px; border-radius: 50%;
+    background: radial-gradient(circle, var(--soft) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-text { animation: fadeUp 0.9s ease both; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--rose); border: 1px solid var(--rose);
+    padding: 0.35rem 1rem; margin-bottom: 1.5rem; border-radius: 100px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 300; line-height: 1.08;
+    margin-bottom: 1.4rem; color: var(--deep);
+  }
+  .hero h1 em { font-style: italic; color: var(--rose); }
+  .hero p {
+    font-size: 1rem; color: var(--mid); line-height: 1.75;
+    max-width: 420px; margin-bottom: 2.4rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--deep); color: var(--cream);
+    padding: 1rem 2.4rem; font-size: 0.82rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: none; cursor: pointer; text-decoration: none;
+    border-radius: 2px; transition: all 0.25s;
+  }
+  .btn-primary:hover { background: var(--rose); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-block;
+    background: transparent; color: var(--deep);
+    padding: 1rem 2.4rem; font-size: 0.82rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1.5px solid var(--deep); cursor: pointer; text-decoration: none;
+    border-radius: 2px; transition: all 0.25s; margin-left: 1rem;
+  }
+  .btn-outline:hover { border-color: var(--rose); color: var(--rose); }
+
+  .hero-image {
+    animation: fadeUp 0.9s 0.2s ease both;
+    position: relative; display: flex; justify-content: center;
+  }
+  .hero-image .cake-frame {
+    width: 420px; height: 480px;
+    border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+    background: linear-gradient(160deg, var(--blush), var(--soft));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9rem; position: relative; overflow: hidden;
+    box-shadow: 0 40px 80px rgba(43,26,18,0.12);
+    animation: float 4s ease-in-out infinite;
+  }
+  .hero-image .badge {
+    position: absolute; top: 40px; right: -10px;
+    background: var(--white); border-radius: 50%;
+    width: 90px; height: 90px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    box-shadow: 0 8px 30px rgba(43,26,18,0.15);
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .badge-num { font-size: 1.6rem; font-weight: 600; color: var(--rose); }
+  .badge-txt { font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(30px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15;
+    color: var(--deep); margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--mid); line-height: 1.75; max-width: 520px; }
+
+  /* ── MENU ── */
+  #menu { background: var(--white); }
+  .menu-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .tab-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tab {
+    padding: 0.55rem 1.4rem; border-radius: 100px;
+    font-size: 0.8rem; letter-spacing: 0.08em;
+    border: 1.5px solid var(--blush); background: transparent;
+    cursor: pointer; transition: all 0.2s; color: var(--mid);
+  }
+  .tab.active, .tab:hover { background: var(--deep); color: var(--cream); border-color: var(--deep); }
+
+  .product-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(270px,1fr)); gap: 2rem;
+  }
+  .product-card {
+    background: var(--cream); border-radius: 16px; overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(43,26,18,0.12); }
+  .product-img {
+    height: 200px; background: linear-gradient(135deg, var(--blush), var(--soft));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; position: relative;
+  }
+  .product-img .logo-placeholder {
+    position: absolute; bottom: 10px; right: 10px;
+    background: var(--white); border-radius: 50%; width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; font-family: 'Cormorant Garamond', serif;
+    font-weight: 600; color: var(--rose); font-size: 0.7rem;
+  }
+  .product-info { padding: 1.4rem; }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+    font-weight: 400; color: var(--deep); margin-bottom: 0.4rem;
+  }
+  .product-desc { font-size: 0.8rem; color: var(--mid); margin-bottom: 1rem; line-height: 1.6; }
+  .product-flavours { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .flavour-tag {
+    font-size: 0.7rem; padding: 0.25rem 0.7rem; border-radius: 100px;
+    background: var(--blush); color: var(--mid);
+  }
+  .product-price-row { display: flex; justify-content: space-between; align-items: center; }
+  .price-from { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); }
+  .price-amt {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
+    font-weight: 600; color: var(--rose);
+  }
+  .add-btn {
+    background: var(--deep); color: var(--cream);
+    border: none; padding: 0.5rem 1rem; border-radius: 4px;
+    font-size: 0.75rem; letter-spacing: 0.08em; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .add-btn:hover { background: var(--rose); }
+
+  /* ── PRICE TABLE ── */
+  #pricing { background: var(--cream); }
+  .price-table-wrap { overflow-x: auto; margin-top: 3rem; }
+  table {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  thead tr { background: var(--deep); color: var(--cream); }
+  thead th {
+    padding: 1rem 1.2rem; text-align: left;
+    font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.75rem;
+  }
+  tbody tr { border-bottom: 1px solid var(--blush); transition: background 0.15s; }
+  tbody tr:hover { background: var(--blush); }
+  tbody td { padding: 0.9rem 1.2rem; color: var(--deep); }
+  tbody td.price { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.05rem; color: var(--rose); }
+  .note-row td { font-size: 0.78rem; color: var(--mid); font-style: italic; background: #fdf3ee; }
+
+  /* ── CUSTOMIZE ── */
+  #customize { background: linear-gradient(135deg, var(--blush) 0%, var(--cream) 60%); }
+  .customize-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3rem; }
+
+  .step-block { margin-bottom: 2rem; }
+  .step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--rose); color: var(--white);
+    font-size: 0.75rem; font-weight: 500; margin-bottom: 0.6rem;
+  }
+  .step-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--mid); margin-bottom: 0.5rem; }
+  .step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--deep); margin-bottom: 0.9rem; }
+
+  .option-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip {
+    padding: 0.5rem 1.1rem; border-radius: 100px;
+    border: 1.5px solid var(--blush); background: var(--white);
+    font-size: 0.8rem; cursor: pointer; transition: all 0.2s; color: var(--mid);
+  }
+  .chip.selected, .chip:hover {
+    background: var(--deep); color: var(--cream); border-color: var(--deep);
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.5rem; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 0.75rem 1rem;
+    border: 1.5px solid var(--blush); border-radius: 6px;
+    background: var(--white); font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; color: var(--deep); outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--rose);
+  }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+
+  /* Preview card */
+  .cake-preview {
+    background: var(--white); border-radius: 20px; padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(43,26,18,0.1);
+    position: sticky; top: 100px;
+  }
+  .preview-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--deep); }
+  .preview-visual {
+    height: 200px; background: linear-gradient(135deg, var(--blush), var(--soft));
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 6rem; margin-bottom: 1.5rem; position: relative; overflow: hidden;
+  }
+  .preview-rows { margin-bottom: 1.8rem; }
+  .preview-row {
+    display: flex; justify-content: space-between; padding: 0.65rem 0;
+    border-bottom: 1px dashed var(--blush); font-size: 0.85rem;
+  }
+  .preview-row .key { color: var(--mid); }
+  .preview-row .val { font-weight: 500; color: var(--deep); }
+  .preview-total {
+    display: flex; justify-content: space-between; padding-top: 1rem;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+  }
+  .preview-total .total-label { color: var(--mid); }
+  .preview-total .total-price { color: var(--rose); font-weight: 600; }
+
+  /* ── CHECKOUT / PAYMENT ── */
+  #checkout { background: var(--white); }
+  .checkout-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; margin-top: 3rem; align-items: start; }
+
+  .order-summary { background: var(--cream); border-radius: 16px; padding: 2rem; }
+  .summary-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--deep); }
+  .summary-item {
+    display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--blush);
+  }
+  .summary-item-icon {
+    width: 52px; height: 52px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--blush), var(--soft));
+    display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .summary-item-info { flex: 1; }
+  .summary-item-name { font-weight: 500; font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .summary-item-meta { font-size: 0.78rem; color: var(--mid); }
+  .summary-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--rose); }
+  .summary-totals { margin-top: 1.5rem; }
+  .summary-line { display: flex; justify-content: space-between; padding: 0.5rem 0; font-size: 0.85rem; color: var(--mid); }
+  .summary-line.grand { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--deep); font-weight: 600; border-top: 2px solid var(--deep); padding-top: 1rem; margin-top: 0.5rem; }
+
+  /* Payment form */
+  .payment-box { background: var(--cream); border-radius: 16px; padding: 2rem; }
+  .payment-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--deep); }
+
+  .ssl-badge {
+    display: flex; align-items: center; gap: 0.8rem;
+    padding: 1rem 1.2rem; border-radius: 10px;
+    background: linear-gradient(90deg, #1a7a4a, #239b60);
+    color: white; margin-bottom: 1.5rem;
+  }
+  .ssl-badge-icon { font-size: 1.5rem; }
+  .ssl-badge-text { font-size: 0.78rem; line-height: 1.4; }
+  .ssl-badge-text strong { display: block; font-size: 0.88rem; }
+
+  .payment-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .pay-method {
+    padding: 0.8rem; border-radius: 8px; border: 2px solid var(--blush);
+    background: var(--white); cursor: pointer; text-align: center;
+    transition: all 0.2s;
+  }
+  .pay-method.selected { border-color: var(--rose); background: #fff8f5; }
+  .pay-method img { height: 24px; object-fit: contain; }
+  .pay-method-name { font-size: 0.72rem; margin-top: 0.3rem; color: var(--mid); }
+
+  .pay-btn {
+    width: 100%; padding: 1.1rem;
+    background: linear-gradient(90deg, #1a7a4a, #239b60);
+    color: white; border: none; border-radius: 8px;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em;
+    cursor: pointer; transition: opacity 0.2s; display: flex;
+    align-items: center; justify-content: center; gap: 0.6rem;
+  }
+  .pay-btn:hover { opacity: 0.88; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--deep); color: var(--cream); }
+  #about .section-label { color: var(--accent); }
+  #about .section-title { color: var(--cream); }
+  #about .section-sub { color: var(--soft); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .stat-card { padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--accent); }
+  .stat-desc { font-size: 0.8rem; color: var(--soft); margin-top: 0.3rem; }
+  .about-visual {
+    height: 480px; border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+    background: linear-gradient(160deg, rgba(201,128,106,0.3), rgba(242,217,204,0.15));
+    display: flex; align-items: center; justify-content: center; font-size: 10rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--cream); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3rem; }
+  .contact-info p { color: var(--mid); line-height: 1.8; margin-bottom: 1.5rem; }
+  .contact-detail { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center; }
+  .contact-detail .icon { font-size: 1.3rem; }
+  .contact-detail .text { font-size: 0.88rem; color: var(--mid); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep); color: var(--soft);
+    padding: 3rem 4rem; display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--cream); }
+  .footer-logo span { color: var(--rose); }
+  footer p { font-size: 0.78rem; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(43,26,18,0.6); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--white); border-radius: 20px; padding: 2.5rem;
+    max-width: 520px; width: 92%; max-height: 85vh; overflow-y: auto;
+    transform: translateY(30px); transition: transform 0.3s;
+    position: relative;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    background: var(--blush); border: none; width: 32px; height: 32px;
+    border-radius: 50%; cursor: pointer; font-size: 1.1rem; color: var(--deep);
+  }
+  .modal h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--deep); }
+  .modal .modal-emoji { font-size: 4rem; text-align: center; margin-bottom: 1rem; }
+
+  /* ── SUCCESS ── */
+  #success-screen {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: var(--cream); align-items: center; justify-content: center;
+    flex-direction: column; text-align: center; padding: 2rem;
+  }
+  #success-screen.show { display: flex; }
+  .success-icon { font-size: 5rem; margin-bottom: 1.5rem; }
+  #success-screen h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--deep); margin-bottom: 1rem; }
+  #success-screen p { color: var(--mid); max-width: 420px; line-height: 1.75; margin-bottom: 2rem; }
+
+  /* ── CART SIDEBAR ── */
+  .cart-sidebar {
+    position: fixed; right: 0; top: 0; bottom: 0; z-index: 998;
+    width: 380px; background: var(--white);
+    box-shadow: -20px 0 60px rgba(43,26,18,0.15);
+    transform: translateX(100%); transition: transform 0.35s;
+    display: flex; flex-direction: column;
+  }
+  .cart-sidebar.open { transform: translateX(0); }
+  .cart-header {
+    padding: 1.5rem 1.8rem; border-bottom: 1px solid var(--blush);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cart-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--deep); }
+  .cart-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--mid); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 1.8rem; }
+  .cart-item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--blush); }
+  .cart-item-icon { font-size: 2rem; flex-shrink: 0; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 0.9rem; font-weight: 500; color: var(--deep); }
+  .cart-item-meta { font-size: 0.75rem; color: var(--mid); }
+  .cart-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--rose); font-weight: 600; }
+  .cart-remove { background: none; border: none; color: var(--mid); cursor: pointer; font-size: 1rem; margin-top: 0.3rem; }
+  .cart-footer { padding: 1.5rem 1.8rem; border-top: 1px solid var(--blush); }
+  .cart-total-line { display: flex; justify-content: space-between; margin-bottom: 1.2rem; }
+  .cart-total-label { color: var(--mid); }
+  .cart-total-amt { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--deep); font-weight: 600; }
+  .empty-cart { text-align: center; padding: 3rem 1rem; color: var(--mid); }
+  .empty-cart .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2rem; }
+    .hero-image .cake-frame { width: 300px; height: 340px; }
+    .customize-grid, .checkout-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .payment-methods { grid-template-columns: 1fr 1fr; }
+    footer { padding: 2rem 1.5rem; }
+    .cart-sidebar { width: 100%; }
+  }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s, transform 0.65s; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Sprinkles<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#customize">Customize</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cart" onclick="toggleCart()">
+    🛒 Cart <span id="cart-count">(0)</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-text">
+    <span class="hero-tag">✦ Handcrafted in Dhaka</span>
+    <h1>Every slice<br>tells a <em>story</em></h1>
+    <p>At Sprinkles, we bake love into every layer. From dreamy birthday cakes to elegant wedding tiers — crafted fresh, just for you.</p>
+    <a class="btn-primary" href="#menu">Explore Menu</a>
+    <a class="btn-outline" href="#customize">Customise Cake</a>
+  </div>
+  <div class="hero-image">
+    <div class="cake-frame">🎂
+      <div class="badge">
+        <span class="badge-num">50+</span>
+        <span class="badge-txt">Flavours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="menu-header reveal">
+    <div>
+      <p class="section-label">Our Collection</p>
+      <h2 class="section-title">Made with real<br>ingredients & real love</h2>
+    </div>
+    <div class="tab-row">
+      <button class="tab active" onclick="filterMenu('all',this)">All</button>
+      <button class="tab" onclick="filterMenu('birthday',this)">Birthday</button>
+      <button class="tab" onclick="filterMenu('wedding',this)">Wedding</button>
+      <button class="tab" onclick="filterMenu('cupcake',this)">Cupcakes</button>
+      <button class="tab" onclick="filterMenu('pastry',this)">Pastries</button>
+    </div>
+  </div>
+  <div class="product-grid reveal" id="product-grid"></div>
+</section>
+
+<!-- PRICING TABLE -->
+<section id="pricing">
+  <div class="reveal">
+    <p class="section-label">Price List</p>
+    <h2 class="section-title">Transparent pricing<br>for every occasion</h2>
+    <p class="section-sub">Prices vary by size and flavour. All cakes are freshly made to order.</p>
+  </div>
+  <div class="price-table-wrap reveal" style="margin-top:3rem">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Size / Serves</th>
+          <th>Chocolate</th>
+          <th>Vanilla</th>
+          <th>Red Velvet</th>
+          <th>Strawberry</th>
+          <th>Custom Flavour</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="7" style="background:var(--blush);font-weight:500;padding:0.7rem 1.2rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase">🎂 Birthday Cakes</td></tr>
+        <tr>
+          <td>Half Kg Cake</td><td>4–6 persons</td>
+          <td class="price">৳ 850</td><td class="price">৳ 800</td>
+          <td class="price">৳ 950</td><td class="price">৳ 900</td>
+          <td class="price">+৳ 150</td>
+        </tr>
+        <tr>
+          <td>1 Kg Cake</td><td>8–10 persons</td>
+          <td class="price">৳ 1,500</td><td class="price">৳ 1,400</td>
+          <td class="price">৳ 1,700</td><td class="price">৳ 1,600</td>
+          <td class="price">+৳ 200</td>
+        </tr>
+        <tr>
+          <td>2 Kg Cake</td><td>16–20 persons</td>
+          <td class="price">৳ 2,800</td><td class="price">৳ 2,600</td>
+          <td class="price">৳ 3,200</td><td class="price">৳ 3,000</td>
+          <td class="price">+৳ 300</td>
+        </tr>
+        <tr>
+          <td>3 Kg Cake</td><td>25–30 persons</td>
+          <td class="price">৳ 4,000</td><td class="price">৳ 3,800</td>
+          <td class="price">৳ 4,500</td><td class="price">৳ 4,200</td>
+          <td class="price">+৳ 400</td>
+        </tr>
+        <tr><td colspan="7" style="background:var(--blush);font-weight:500;padding:0.7rem 1.2rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase">💍 Wedding Cakes</td></tr>
+        <tr>
+          <td>2-Tier Wedding</td><td>30–40 persons</td>
+          <td class="price">৳ 6,500</td><td class="price">৳ 6,000</td>
+          <td class="price">৳ 7,500</td><td class="price">৳ 7,000</td>
+          <td class="price">+৳ 500</td>
+        </tr>
+        <tr>
+          <td>3-Tier Wedding</td><td>60–80 persons</td>
+          <td class="price">৳ 12,000</td><td class="price">৳ 11,000</td>
+          <td class="price">৳ 14,000</td><td class="price">৳ 13,000</td>
+          <td class="price">+৳ 800</td>
+        </tr>
+        <tr>
+          <td>4-Tier Grand</td><td>100+ persons</td>
+          <td class="price">৳ 20,000</td><td class="price">৳ 18,500</td>
+          <td class="price">৳ 23,000</td><td class="price">৳ 21,000</td>
+          <td class="price">+৳ 1,200</td>
+        </tr>
+        <tr><td colspan="7" style="background:var(--blush);font-weight:500;padding:0.7rem 1.2rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase">🧁 Cupcakes (per dozen)</td></tr>
+        <tr>
+          <td>Classic Cupcake</td><td>12 pcs</td>
+          <td class="price">৳ 600</td><td class="price">৳ 550</td>
+          <td class="price">৳ 700</td><td class="price">৳ 650</td>
+          <td class="price">+৳ 100</td>
+        </tr>
+        <tr>
+          <td>Deluxe Cupcake</td><td>12 pcs</td>
+          <td class="price">৳ 900</td><td class="price">৳ 850</td>
+          <td class="price">৳ 1,000</td><td class="price">৳ 950</td>
+          <td class="price">+৳ 150</td>
+        </tr>
+        <tr><td colspan="7" style="background:var(--blush);font-weight:500;padding:0.7rem 1.2rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase">🥐 Pastries (per piece)</td></tr>
+        <tr>
+          <td>Cream Pastry</td><td>1 pc</td>
+          <td class="price">৳ 120</td><td class="price">৳ 110</td>
+          <td class="price">৳ 140</td><td class="price">৳ 130</td>
+          <td class="price">+৳ 20</td>
+        </tr>
+        <tr>
+          <td>Fruit Tart</td><td>1 pc</td>
+          <td class="price">—</td><td class="price">৳ 150</td>
+          <td class="price">—</td><td class="price">৳ 170</td>
+          <td class="price">+৳ 30</td>
+        </tr>
+        <tr class="note-row">
+          <td colspan="7">* Prices are approximate. Final price confirmed on order. Custom decoration, fondant art & 3D designs priced separately. Delivery charges apply outside Dhaka.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CUSTOMIZE -->
+<section id="customize">
+  <div class="reveal">
+    <p class="section-label">Design Your Cake</p>
+    <h2 class="section-title">Make it<br><em>uniquely yours</em></h2>
+    <p class="section-sub">Choose every detail — we'll bake it to perfection.</p>
+  </div>
+  <div class="customize-grid">
+    <div class="reveal">
+
+      <div class="step-block">
+        <div class="step-num">1</div>
+        <p class="step-label">Category</p>
+        <p class="step-title">What are you celebrating?</p>
+        <div class="option-chips" id="chips-category">
+          <div class="chip selected" onclick="selectChip(this,'category','Birthday')">🎂 Birthday</div>
+          <div class="chip" onclick="selectChip(this,'category','Wedding')">💍 Wedding</div>
+          <div class="chip" onclick="selectChip(this,'category','Anniversary')">🌹 Anniversary</div>
+          <div class="chip" onclick="selectChip(this,'category','Baby Shower')">👶 Baby Shower</div>
+          <div class="chip" onclick="selectChip(this,'category','Graduation')">🎓 Graduation</div>
+          <div class="chip" onclick="selectChip(this,'category','Just Because')">🎁 Just Because</div>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-num">2</div>
+        <p class="step-label">Size</p>
+        <p class="step-title">How many guests?</p>
+        <div class="option-chips" id="chips-size">
+          <div class="chip selected" onclick="selectChip(this,'size','½ Kg (4–6)','850')">½ Kg</div>
+          <div class="chip" onclick="selectChip(this,'size','1 Kg (8–10)','1500')">1 Kg</div>
+          <div class="chip" onclick="selectChip(this,'size','2 Kg (16–20)','2800')">2 Kg</div>
+          <div class="chip" onclick="selectChip(this,'size','3 Kg (25–30)','4000')">3 Kg</div>
+          <div class="chip" onclick="selectChip(this,'size','2-Tier (30–40)','6500')">2-Tier</div>
+          <div class="chip" onclick="selectChip(this,'size','3-Tier (60–80)','12000')">3-Tier</div>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-num">3</div>
+        <p class="step-label">Flavour</p>
+        <p class="step-title">Pick your taste</p>
+        <div class="option-chips" id="chips-flavour">
+          <div class="chip selected" onclick="selectChip(this,'flavour','Chocolate')">🍫 Chocolate</div>
+          <div class="chip" onclick="selectChip(this,'flavour','Vanilla')">🍦 Vanilla</div>
+          <div class="chip" onclick="selectChip(this,'flavour','Red Velvet')">❤️ Red Velvet</div>
+          <div class="chip" onclick="selectChip(this,'flavour','Strawberry')">🍓 Strawberry</div>
+          <div class="chip" onclick="selectChip(this,'flavour','Lemon')">🍋 Lemon</div>
+          <div class="chip" onclick="selectChip(this,'flavour','Mango')">🥭 Mango</div>
+          <div class="chip" onclick="selectChip(this,'flavour','Black Forest')">🌲 Black Forest</div>
+          <div class="chip" onclick="selectChip(this,'flavour','Butterscotch')">🧈 Butterscotch</div>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-num">4</div>
+        <p class="step-label">Frosting</p>
+        <p class="step-title">How do you want it decorated?</p>
+        <div class="option-chips" id="chips-frosting">
+          <div class="chip selected" onclick="selectChip(this,'frosting','Buttercream')">Buttercream</div>
+          <div class="chip" onclick="selectChip(this,'frosting','Fondant')">Fondant</div>
+          <div class="chip" onclick="selectChip(this,'frosting','Whipped Cream')">Whipped Cream</div>
+          <div class="chip" onclick="selectChip(this,'frosting','Ganache')">Ganache</div>
+          <div class="chip" onclick="selectChip(this,'frosting','Naked Cake')">Naked Cake</div>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-num">5</div>
+        <p class="step-label">Personal Touch</p>
+        <p class="step-title">Message & extras</p>
+        <div class="form-group">
+          <label>Cake Message (on top)</label>
+          <input type="text" id="cake-message" placeholder="e.g. Happy Birthday Rahim!" oninput="updatePreview()" maxlength="60"/>
+        </div>
+        <div class="form-group">
+          <label>Special Instructions</label>
+          <textarea id="special-note" placeholder="Allergies, design ideas, colour preferences…" oninput="updatePreview()"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Delivery Date</label>
+          <input type="date" id="delivery-date" oninput="updatePreview()" min=""/>
+        </div>
+      </div>
+
+      <button class="btn-primary" style="width:100%;text-align:center;display:block;padding:1.1rem" onclick="addCustomToCart()">
+        Add to Cart — <span id="custom-price-btn">৳ 850</span>
+      </button>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="reveal">
+      <div class="cake-preview">
+        <p class="preview-title">Your Cake Preview</p>
+        <div class="preview-visual" id="preview-emoji">🎂</div>
+        <div class="preview-rows">
+          <div class="preview-row"><span class="key">Category</span><span class="val" id="prev-cat">Birthday</span></div>
+          <div class="preview-row"><span class="key">Size</span><span class="val" id="prev-size">½ Kg (4–6)</span></div>
+          <div class="preview-row"><span class="key">Flavour</span><span class="val" id="prev-flav">Chocolate</span></div>
+          <div class="preview-row"><span class="key">Frosting</span><span class="val" id="prev-frost">Buttercream</span></div>
+          <div class="preview-row"><span class="key">Message</span><span class="val" id="prev-msg">—</span></div>
+          <div class="preview-row"><span class="key">Delivery</span><span class="val" id="prev-date">—</span></div>
+        </div>
+        <div class="preview-total">
+          <span class="total-label">Estimated Total</span>
+          <span class="total-price" id="prev-price">৳ 850</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">Baked with passion<br>since day one</h2>
+      <p class="section-sub" style="color:var(--soft)">Sprinkles was born from a simple belief: that every celebration deserves a cake as special as the moment itself. Based in Dhaka, our bakers blend traditional recipes with modern artistry.</p>
+      <p class="section-sub" style="color:var(--soft);margin-top:1rem">Every cake is made fresh to order using quality ingredients — no preservatives, no shortcuts. Just pure, delicious craftsmanship.</p>
+      <div class="about-stats">
+        <div class="stat-card reveal"><div class="stat-num">1200+</div><div class="stat-desc">Happy customers served</div></div>
+        <div class="stat-card reveal"><div class="stat-num">50+</div><div class="stat-desc">Unique flavours available</div></div>
+        <div class="stat-card reveal"><div class="stat-num">100%</div><div class="stat-desc">Fresh, made to order</div></div>
+        <div class="stat-card reveal"><div class="stat-num">5★</div><div class="stat-desc">Average customer rating</div></div>
+      </div>
+    </div>
+    <div class="about-visual reveal">🎂</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Let's talk<br>about your cake</h2>
+      <p class="contact-info"><p style="color:var(--mid);line-height:1.8;margin-bottom:1.5rem">We'd love to hear from you. Reach out for orders, custom quotes, or just to say hello.</p></p>
+      <div class="contact-detail"><span class="icon">📍</span><span class="text">Dhaka, Bangladesh</span></div>
+      <div class="contact-detail"><span class="icon">📞</span><span class="text">+880 1XXX-XXXXXX</span></div>
+      <div class="contact-detail"><span class="icon">✉️</span><span class="text">hello@sprinklescakes.com</span></div>
+      <div class="contact-detail"><span class="icon">🕐</span><span class="text">Sat–Thu: 9am – 9pm</span></div>
+    </div>
+    <div class="reveal">
+      <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name"/></div>
+      <div class="form-group"><label>Phone / Email</label><input type="text" placeholder="+880 or email"/></div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your order or enquiry…" style="min-height:120px"></textarea></div>
+      <button class="btn-primary" style="width:100%;text-align:center;display:block" onclick="alert('Message sent! We\'ll be in touch soon. 🎂')">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKOUT -->
+<section id="checkout">
+  <div class="reveal">
+    <p class="section-label">Checkout</p>
+    <h2 class="section-title">Review & pay<br>securely</h2>
+  </div>
+  <div class="checkout-grid">
+    <div>
+      <div class="order-summary reveal">
+        <p class="summary-title">Order Summary</p>
+        <div id="checkout-items-list">
+          <div style="text-align:center;padding:2rem;color:var(--mid)">Your cart is empty. Add items from the menu! 🛒</div>
+        </div>
+        <div class="summary-totals" id="checkout-totals" style="display:none">
+          <div class="summary-line"><span>Subtotal</span><span id="co-subtotal">৳ 0</span></div>
+          <div class="summary-line"><span>Delivery (Dhaka)</span><span>৳ 100</span></div>
+          <div class="summary-line grand"><span>Total</span><span id="co-total">৳ 100</span></div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem" class="reveal">
+        <div class="form-group"><label>Delivery Address</label><input type="text" id="del-address" placeholder="Full address, road, area, Dhaka"/></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group"><label>Name</label><input type="text" id="del-name" placeholder="Recipient name"/></div>
+          <div class="form-group"><label>Phone</label><input type="text" id="del-phone" placeholder="+880"/></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="payment-box reveal">
+      <h3>Payment</h3>
+      <div class="ssl-badge">
+        <span class="ssl-badge-icon">🔒</span>
+        <div class="ssl-badge-text">
+          <strong>Secured by SSLCommerz</strong>
+          Bangladesh's trusted payment gateway
+        </div>
+      </div>
+
+      <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--mid);margin-bottom:0.8rem">Choose Payment Method</p>
+      <div class="payment-methods">
+        <div class="pay-method selected" onclick="selectPayMethod(this)">
+          <div style="font-size:1.8rem">📱</div>
+          <div class="pay-method-name">bKash</div>
+        </div>
+        <div class="pay-method" onclick="selectPayMethod(this)">
+          <div style="font-size:1.8rem">💚</div>
+          <div class="pay-method-name">Nagad</div>
+        </div>
+        <div class="pay-method" onclick="selectPayMethod(this)">
+          <div style="font-size:1.8rem">🏦</div>
+          <div class="pay-method-name">Net Banking</div>
+        </div>
+        <div class="pay-method" onclick="selectPayMethod(this)">
+          <div style="font-size:1.8rem">💳</div>
+          <div class="pay-method-name">Debit / Credit</div>
+        </div>
+        <div class="pay-method" onclick="selectPayMethod(this)">
+          <div style="font-size:1.8rem">🟠</div>
+          <div class="pay-method-name">Rocket</div>
+        </div>
+        <div class="pay-method" onclick="selectPayMethod(this)">
+          <div style="font-size:1.8rem">💵</div>
+          <div class="pay-method-name">Cash on Delivery</div>
+        </div>
+      </div>
+
+      <div style="background:var(--blush);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.8rem;color:var(--mid);line-height:1.6">
+        You will be redirected to SSLCommerz secure checkout to complete your payment. Your card/account details are never stored on our servers.
+      </div>
+
+      <button class="pay-btn" onclick="processPayment()">
+        🔒 Pay Securely via SSLCommerz
+      </button>
+      <p style="text-align:center;font-size:0.72rem;color:var(--mid);margin-top:0.8rem">256-bit SSL encrypted • PCI DSS compliant</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Sprinkles<span>.</span></div>
+    <p style="margin-top:0.4rem;font-size:0.78rem">Artisan Cakes & Pastries · Dhaka, Bangladesh</p>
+  </div>
+  <p>© 2025 Sprinkles. All rights reserved.</p>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items-list"></div>
+  <div class="cart-footer">
+    <div class="cart-total-line">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-amt" id="cart-total-amt">৳ 0</span>
+    </div>
+    <button class="btn-primary" style="width:100%;text-align:center;display:block" onclick="goCheckout()">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div id="success-screen">
+  <div class="success-icon">🎉</div>
+  <h2>Order Placed!</h2>
+  <p>Thank you for ordering from Sprinkles. Your cake is confirmed and our baker has been notified. We'll contact you shortly to confirm delivery details.</p>
+  <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--rose);margin-bottom:2rem">Your order reference: <strong id="order-ref"></strong></p>
+  <button class="btn-primary" onclick="document.getElementById('success-screen').classList.remove('show');location.href='#hero'">Back to Home</button>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="product-modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-emoji" id="modal-emoji">🎂</div>
+    <h2 id="modal-name">Product Name</h2>
+    <p id="modal-desc" style="color:var(--mid);line-height:1.75;margin-bottom:1.5rem"></p>
+    <div class="form-group">
+      <label>Flavour</label>
+      <select id="modal-flavour">
+        <option>Chocolate</option><option>Vanilla</option>
+        <option>Red Velvet</option><option>Strawberry</option>
+        <option>Lemon</option><option>Mango</option>
+        <option>Black Forest</option><option>Butterscotch</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Size</label>
+      <select id="modal-size" onchange="updateModalPrice()">
+        <option value="850">½ Kg — ৳ 850</option>
+        <option value="1500">1 Kg — ৳ 1,500</option>
+        <option value="2800">2 Kg — ৳ 2,800</option>
+        <option value="4000">3 Kg — ৳ 4,000</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Message on Cake</label>
+      <input type="text" id="modal-msg" placeholder="Optional message"/>
+    </div>
+    <button class="btn-primary" style="width:100%;text-align:center;display:block;margin-top:0.5rem" id="modal-add-btn" onclick="addModalToCart()">
+      Add to Cart — <span id="modal-price-display">৳ 850</span>
+    </button>
+  </div>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────
+const PRODUCTS = [
+  { id:1, cat:'birthday', name:'Classic Birthday Cake', emoji:'🎂', desc:'A timeless layer cake with smooth frosting, perfect for any birthday celebration.', flavours:['Chocolate','Vanilla','Red Velvet','Strawberry'], from:850 },
+  { id:2, cat:'birthday', name:'Cartoon Theme Cake', emoji:'🎪', desc:'Whimsical fondant-decorated cakes featuring your favourite characters.', flavours:['Vanilla','Strawberry','Mango'], from:1500 },
+  { id:3, cat:'wedding', name:'Elegant 2-Tier Wedding', emoji:'💍', desc:'Refined two-tier wedding cake with delicate floral decorations.', flavours:['Vanilla','Red Velvet','Chocolate'], from:6500 },
+  { id:4, cat:'wedding', name:'Grand 3-Tier Wedding', emoji:'👑', desc:'Majestic three-tier masterpiece for your perfect wedding day.', flavours:['Vanilla','Strawberry','Butterscotch'], from:12000 },
+  { id:5, cat:'cupcake', name:'Classic Cupcakes', emoji:'🧁', desc:'Fluffy, perfectly frosted cupcakes in a dozen. Great for parties!', flavours:['Chocolate','Vanilla','Red Velvet','Strawberry'], from:550 },
+  { id:6, cat:'cupcake', name:'Deluxe Cupcakes', emoji:'✨', desc:'Premium cupcakes with artisan toppings, edible glitter, and fresh flowers.', flavours:['Red Velvet','Black Forest','Lemon'], from:850 },
+  { id:7, cat:'pastry', name:'Cream Pastry', emoji:'🍰', desc:'Delicate layered pastry with silky cream filling and fresh fruit toppings.', flavours:['Vanilla','Strawberry','Chocolate'], from:110 },
+  { id:8, cat:'pastry', name:'Fruit Tart', emoji:'🥧', desc:'Crisp tart shells filled with velvety custard cream and seasonal fruits.', flavours:['Vanilla','Strawberry'], from:150 },
+];
+
+// ─── STATE ──────────────────────────────────────────────
+let cart = [];
+let customState = { category:'Birthday', size:'½ Kg (4–6)', sizePrice:850, flavour:'Chocolate', frosting:'Buttercream', message:'', date:'' };
+let currentModalProduct = null;
+
+// ─── RENDER PRODUCTS ────────────────────────────────────
+function renderProducts(filter='all') {
+  const grid = document.getElementById('product-grid');
+  const list = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === filter);
+  grid.innerHTML = list.map(p => `
+    <div class="product-card" onclick="openModal(${p.id})">
+      <div class="product-img">${p.emoji}<div class="logo-placeholder">S.</div></div>
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-flavours">${p.flavours.slice(0,3).map(f=>`<span class="flavour-tag">${f}</span>`).join('')}${p.flavours.length>3?`<span class="flavour-tag">+${p.flavours.length-3}</span>`:''}</div>
+        <div class="product-price-row">
+          <div><div class="price-from">From</div><div class="price-amt">৳ ${p.from.toLocaleString()}</div></div>
+          <button class="add-btn" onclick="event.stopPropagation();openModal(${p.id})">Customise</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterMenu(cat, btn) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(cat);
+}
+
+// ─── MODAL ──────────────────────────────────────────────
+function openModal(id) {
+  currentModalProduct = PRODUCTS.find(p=>p.id===id);
+  if (!currentModalProduct) return;
+  document.getElementById('modal-emoji').textContent = currentModalProduct.emoji;
+  document.getElementById('modal-name').textContent = currentModalProduct.name;
+  document.getElementById('modal-desc').textContent = currentModalProduct.desc;
+  const flavSel = document.getElementById('modal-flavour');
+  flavSel.innerHTML = currentModalProduct.flavours.map(f=>`<option>${f}</option>`).join('');
+  // Set sizes based on category
+  const sizeSel = document.getElementById('modal-size');
+  if (currentModalProduct.cat === 'cupcake') {
+    sizeSel.innerHTML = `<option value="550">Classic Dozen — ৳ 550</option><option value="850">Deluxe Dozen — ৳ 850</option>`;
+  } else if (currentModalProduct.cat === 'pastry') {
+    sizeSel.innerHTML = `<option value="110">Single Piece — ৳ 110</option><option value="150">Fruit Tart — ৳ 150</option>`;
+  } else if (currentModalProduct.cat === 'wedding') {
+    sizeSel.innerHTML = `<option value="6500">2-Tier (30–40) — ৳ 6,500</option><option value="12000">3-Tier (60–80) — ৳ 12,000</option><option value="20000">4-Tier Grand — ৳ 20,000</option>`;
+  } else {
+    sizeSel.innerHTML = `<option value="850">½ Kg — ৳ 850</option><option value="1500">1 Kg — ৳ 1,500</option><option value="2800">2 Kg — ৳ 2,800</option><option value="4000">3 Kg — ৳ 4,000</option>`;
+  }
+  updateModalPrice();
+  document.getElementById('modal-msg').value = '';
+  document.getElementById('product-modal').classList.add('open');
+}
+
+function updateModalPrice() {
+  const price = parseInt(document.getElementById('modal-size').value);
+  document.getElementById('modal-price-display').textContent = '৳ ' + price.toLocaleString();
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('product-modal')) {
+    document.getElementById('product-modal').classList.remove('open');
+  }
+}
+
+function addModalToCart() {
+  if (!currentModalProduct) return;
+  const price = parseInt(document.getElementById('modal-size').value);
+  const size = document.getElementById('modal-size').selectedOptions[0].text.split('—')[0].trim();
+  const flavour = document.getElementById('modal-flavour').value;
+  const msg = document.getElementById('modal-msg').value;
+  cart.push({
+    id: Date.now(), emoji: currentModalProduct.emoji,
+    name: currentModalProduct.name, size, flavour,
+    message: msg, price
+  });
+  updateCart();
+  closeModal();
+  toggleCart();
+}
+
+// ─── CUSTOMIZER ─────────────────────────────────────────
+function selectChip(el, group, value, priceStr) {
+  const container = document.getElementById('chips-' + group);
+  container.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  if (group === 'category') customState.category = value;
+  if (group === 'size') { customState.size = value; customState.sizePrice = parseInt(priceStr || '850'); }
+  if (group === 'flavour') customState.flavour = value;
+  if (group === 'frosting') customState.frosting = value;
+  updatePreview();
+}
+
+function updatePreview() {
+  customState.message = document.getElementById('cake-message').value;
+  customState.date = document.getElementById('delivery-date').value;
+  document.getElementById('prev-cat').textContent = customState.category;
+  document.getElementById('prev-size').textContent = customState.size;
+  document.getElementById('prev-flav').textContent = customState.flavour;
+  document.getElementById('prev-frost').textContent = customState.frosting;
+  document.getElementById('prev-msg').textContent = customState.message || '—';
+  document.getElementById('prev-date').textContent = customState.date || '—';
+  const price = customState.sizePrice;
+  document.getElementById('prev-price').textContent = '৳ ' + price.toLocaleString();
+  document.getElementById('custom-price-btn').textContent = '৳ ' + price.toLocaleString();
+  // emoji based on category
+  const emojis = { Birthday:'🎂', Wedding:'💍', Anniversary:'🌹', 'Baby Shower':'👶', Graduation:'🎓', 'Just Because':'🎁' };
+  document.getElementById('preview-emoji').textContent = emojis[customState.category] || '🎂';
+}
+
+function addCustomToCart() {
+  cart.push({
+    id: Date.now(),
+    emoji: document.getElementById('preview-emoji').textContent,
+    name: customState.category + ' Cake',
+    size: customState.size,
+    flavour: customState.flavour,
+    message: customState.message,
+    price: customState.sizePrice
+  });
+  updateCart();
+  toggleCart();
+}
+
+// ─── CART ────────────────────────────────────────────────
+function toggleCart() {
+  document.getElementById('cart-sidebar').classList.toggle('open');
+  renderCartItems();
+}
+
+function renderCartItems() {
+  const list = document.getElementById('cart-items-list');
+  if (cart.length === 0) {
+    list.innerHTML = `<div class="empty-cart"><div class="empty-icon">🛒</div><p>Your cart is empty</p></div>`;
+    return;
+  }
+  list.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-icon">${item.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-meta">${item.size} · ${item.flavour}${item.message ? ' · "'+item.message+'"' : ''}</div>
+        <button class="cart-remove" onclick="removeFromCart(${item.id})">🗑 Remove</button>
+      </div>
+      <div class="cart-item-price">৳ ${item.price.toLocaleString()}</div>
+    </div>
+  `).join('');
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(c => c.id !== id);
+  updateCart();
+  renderCartItems();
+}
+
+function updateCart() {
+  document.getElementById('cart-count').textContent = '(' + cart.length + ')';
+  const total = cart.reduce((s,c) => s + c.price, 0);
+  document.getElementById('cart-total-amt').textContent = '৳ ' + total.toLocaleString();
+  renderCartItems();
+  updateCheckout();
+}
+
+function goCheckout() {
+  document.getElementById('cart-sidebar').classList.remove('open');
+  document.getElementById('checkout').scrollIntoView({ behavior:'smooth' });
+  updateCheckout();
+}
+
+function updateCheckout() {
+  const list = document.getElementById('checkout-items-list');
+  const totals = document.getElementById('checkout-totals');
+  if (cart.length === 0) {
+    list.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--mid)">Your cart is empty. Add items from the menu! 🛒</div>`;
+    totals.style.display = 'none';
+    return;
+  }
+  list.innerHTML = cart.map(item => `
+    <div class="summary-item">
+      <div class="summary-item-icon">${item.emoji}</div>
+      <div class="summary-item-info">
+        <div class="summary-item-name">${item.name}</div>
+        <div class="summary-item-meta">${item.size} · ${item.flavour}</div>
+      </div>
+      <div class="summary-item-price">৳ ${item.price.toLocaleString()}</div>
+    </div>
+  `).join('');
+  const subtotal = cart.reduce((s,c) => s + c.price, 0);
+  document.getElementById('co-subtotal').textContent = '৳ ' + subtotal.toLocaleString();
+  document.getElementById('co-total').textContent = '৳ ' + (subtotal + 100).toLocaleString();
+  totals.style.display = 'block';
+}
+
+// ─── PAYMENT ─────────────────────────────────────────────
+function selectPayMethod(el) {
+  document.querySelectorAll('.pay-method').forEach(m=>m.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function processPayment() {
+  if (cart.length === 0) {
+    alert('Please add items to your cart first!');
+    return;
+  }
+  const name = document.getElementById('del-name').value.trim();
+  const phone = document.getElementById('del-phone').value.trim();
+  const address = document.getElementById('del-address').value.trim();
+  if (!name || !phone || !address) {
+    alert('Please fill in your name, phone, and delivery address.');
+    return;
+  }
+  // Simulate SSLCommerz redirect (in production, call your backend)
+  const overlay = document.createElement('div');
+  overlay.style.cssText='position:fixed;inset:0;background:rgba(43,26,18,0.7);z-index:9998;display:flex;align-items:center;justify-content:center;';
+  overlay.innerHTML=`<div style="background:white;border-radius:16px;padding:2.5rem;text-align:center;max-width:380px;width:90%">
+    <div style="font-size:3rem;margin-bottom:1rem">🔒</div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:0.5rem">Connecting to SSLCommerz…</h3>
+    <p style="color:#7a4f3a;font-size:0.85rem;margin-bottom:1.5rem">You are being securely redirected to complete payment. Do not close this window.</p>
+    <div style="height:4px;background:#f2d9cc;border-radius:2px;overflow:hidden"><div style="height:100%;background:#1a7a4a;border-radius:2px;animation:progress 2s linear forwards"></div></div>
+    <style>@keyframes progress{from{width:0}to{width:100%}}</style>
+  </div>`;
+  document.body.appendChild(overlay);
+  setTimeout(() => {
+    document.body.removeChild(overlay);
+    cart = [];
+    updateCart();
+    const ref = 'SPR-' + Date.now().toString().slice(-6);
+    document.getElementById('order-ref').textContent = ref;
+    document.getElementById('success-screen').classList.add('show');
+  }, 2500);
+}
+
+// ─── SCROLL REVEAL ───────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── INIT ────────────────────────────────────────────────
+renderProducts();
+// Set min date for delivery to tomorrow
+const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate()+1);
+document.getElementById('delivery-date').min = tomorrow.toISOString().split('T')[0];
+</script>
+</body>
+</html>
